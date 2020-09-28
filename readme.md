@@ -1,6 +1,6 @@
 # Laraboi - Laravel boilerplate 🔥🤙
 
-For personal use 🚀
+For personal use 🚀, version 7*
 
 ## Installation
 
