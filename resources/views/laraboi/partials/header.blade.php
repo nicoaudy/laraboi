@@ -6,6 +6,7 @@
 		<div class="">
 			<div class="brand inline no-border d-sm-inline-block">
 				<img src="{{ asset('images/logo.png') }}" alt="logo" data-src="{{ asset('images/logo.png') }}" data-src-retina="{{ asset('images/logo.png') }}" width="78" height="30">
+				<span style="color: white; font-weight: bold; font-size: 1rem;"> araboi</span>
 			</div>
 		</div>
 		<div class="d-flex align-items-center">
@@ -15,7 +16,7 @@
 			<div class="dropdown pull-right d-lg-block">
 				<button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="profile dropdown">
 					<span class="thumbnail-wrapper d32 circular inline">
-						<img src="{{ asset('assets/img/profiles/avatar.jpg') }}" alt="" data-src="{{ asset('assets/img/profiles/avatar.jpg') }}" data-src-retina="{{ asset('assets/img/profiles/avatar_small2x.jpg') }}" width="32" height="32">
+						<img src="{{ asset('images/default.jpg') }}" alt="" data-src="{{ asset('images/default.jpg') }}" data-src-retina="{{ asset('images/default.jpg') }}" width="32" height="32">
 					</span>
 				</button>
 				<div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
