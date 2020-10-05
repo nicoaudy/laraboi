@@ -69,6 +69,7 @@
     <!-- END VENDOR JS -->
 
     <script src="{{ asset('pages/js/pages.min.js') }}"></script>
+    <script src="{{ asset('assets/js/card.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/scripts.js') }}" type="text/javascript"></script>
 
     {{ noty_assets() }}

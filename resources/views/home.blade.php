@@ -74,58 +74,68 @@
 		</div>
 	</div>
 </div>
-<div class="card card-bordered">
-	<div class="card-inner card-inner-md">
-		<div class="card-title-group">
-			<h6 class="card-title">User Activity</h6>
-			<div class="card-action">
-				<a href="{{ route('admin.users.index') }}" class="link link-sm">See All <em class="icon ni ni-chevron-right"></em></a>
+
+<div class="card-body">
+	<div class="row">
+		<div class="col-lg-12">
+
+			<div class="card card-transparent">
+				<div class="card-body no-padding">
+					<div id="card-advance" class="card card-default">
+						<div class="card-header  ">
+							<div class="card-title">User Activity</div>
+							<div class="card-controls">
+								<ul>
+									<li>
+										<div class="dropdown">
+											<a id="card-settings" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+												<i class="card-icon card-icon-settings "></i>
+											</a>
+											<div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="card-settings">
+												<a href="{{ route('admin.users.index') }}" class="dropdown-item">See All</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="card card-transparent">
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-hover table-condensed" id="condensedTable">
+											<thead>
+												<tr>
+													<th>Email</th>
+													<th>Created At</th>
+													<th>Last Logged In</th>
+													<th>Status</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach($users as $log)
+												<tr>
+													<td>
+														<a href="{{ route('admin.users.show', $log->id) }}">{{ $log->email }}</a>
+
+													</td>
+													<td>{{ $log->created_at }}</td>
+													<td>{{ \Carbon\Carbon::parse($log->last_login)->diffForHumans() }}</td>
+													<td>
+														<span class="badge badge-dot badge-{{ $log->active ? 'success' : 'warning' }}">{{ $log->active ? 'Active' : 'Inactive' }}</span>
+													</td>
+												</tr>
+												@endforeach
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<table class="table table-tranx">
-		<thead>
-			<tr class="tb-tnx-head">
-				<th class="tb-tnx-id"><span class="">#</span></th>
-				<th class="tb-tnx-info">
-					<span class="tb-tnx-desc d-none d-sm-inline-block">
-						<span>Email</span>
-					</span>
-					<span class="tb-tnx-date d-md-inline-block d-none">
-						<span class="d-md-none">Activity</span>
-						<span class="d-none d-md-block">
-							<span>Created At</span>
-							<span>Last Logged In</span>
-						</span>
-					</span>
-				</th>
-				<th class="tb-tnx-amount">
-					<span class="tb-tnx-status d-none d-md-inline-block">Status</span>
-				</th>
-		</thead>
-		<tbody>
-			@foreach($users as $log)
-			<tr class="tb-tnx-item">
-				<td class="tb-tnx-id">
-					<a href="{{ route('admin.users.show', $log->id) }}"><span>{{ $log->id }}</span></a>
-				</td>
-				<td class="tb-tnx-info">
-					<div class="tb-tnx-desc">
-						<span class="title">{{ $log->username }}</span>
-					</div>
-					<div class="tb-tnx-date">
-						<span class="date">{{ $log->created_at }}</span>
-						<span class="date">{{ \Carbon\Carbon::parse($log->last_login)->diffForHumans() }}</span>
-					</div>
-				</td>
-				<td class="tb-tnx-amount">
-					<div class="tb-tnx-status">
-						<span class="badge badge-dot badge-{{ $log->active ? 'success' : 'warning' }}">{{ $log->active ? 'Active' : 'Inactive' }}</span>
-					</div>
-				</td>
-			</tr>
-			@endforeach
-		</tbody>
-	</table>
 </div>
 @endsection
