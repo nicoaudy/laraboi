@@ -1,35 +1,36 @@
 @extends('laraboi.app')
 
+@section('breadcrumb')
+<x-breadcrumbs>
+	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('admin.roles.index') }}">Roles</a></li>
+	<li class="breadcrumb-item active"><a href="#">Create Role</a></li>
+</x-breadcrumbs>
+@endsection
+
 @section('content')
-	<div class="nk-block-head">
-		<div class="nk-block-head-sub">
-			<a class="back-to" href="{{ route('admin.roles.index') }}"><em class="icon ni ni-arrow-left"></em><span>Role Lists</span></a>
-		</div>
-	</div>
-	<div class="nk-block nk-block-lg">
-		<div class="card card-bordered">
-			<div class="card-inner">
-				@include('include.error-list')
+<x-wrapper>
+	@include('include.error-list')
+	<x-slot name="headerLeft">Create form</x-slot>
 
-				{!! Form::open([
-					'route' => 'admin.roles.store',
-					'class' => 'form-horizontal',
-					'files' => true,
-					'onsubmit' => "submitButton.disabled = true"
-				]) !!}
+	{!! Form::open([
+	'route' => 'admin.roles.store',
+	'class' => 'form-horizontal',
+	'files' => true,
+	'onsubmit' => "submitButton.disabled = true",
+	'role' => 'form'
+	]) !!}
 
-				@include('admin.roles.form')
+	@include('admin.roles.form')
 
-				{!! Form::close() !!}
-			</div>
-		</div>
-	</div>
+	{!! Form::close() !!}
+</x-wrapper>
 @endsection
 
 @push('javascript')
 <script>
 	$('#select-all').click(function(event) {
-		if(this.checked) {
+		if (this.checked) {
 			$(':checkbox').each(function() {
 				this.checked = true;
 			});

@@ -53,13 +53,13 @@ class UserController extends Controller
             }
         }
 
-        flash('Your data has been created')->success();
-        return redirect()->route('admin.users.index')->with('flash_message', 'User successfully added.');
+        noty()->flash('Hey!', 'Data has been created successfully');
+        return redirect()->route('admin.users.index');
     }
 
     public function show($id)
     {
-        return redirect('admin.users');
+        return response()->json(User::find($id));
     }
 
     public function edit($id)
@@ -95,7 +95,8 @@ class UserController extends Controller
             $user->roles()->detach();
         }
 
-        return redirect()->route('admin.users.index')->with('flash_message', 'User successfully edited.');
+        noty()->flash('Hey!', 'Data has been updated successfully');
+        return redirect()->route('admin.users.index');
     }
 
     public function destroy($id)
@@ -103,6 +104,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('admin.users.index')->with('flash_message', 'User successfully deleted.');
+        noty()->danger('Hey!', 'Data has been deleted successfully');
+        return redirect()->route('admin.users.index');
     }
 }

@@ -1,17 +1,19 @@
 @extends('laraboi.app')
 
-@section('content')
-	<div class="nk-block-head">
-		<div class="nk-block-head-sub">
-			<a class="back-to" href="{{ route('admin.users.index') }}"><em class="icon ni ni-arrow-left"></em><span>User Lists</span></a>
-		</div>
-	</div>
-	<div class="nk-block nk-block-lg">
-		<div class="card card-bordered">
-			<div class="card-inner">
-				@include('include.error-list')
+@section('breadcrumb')
+<x-breadcrumbs>
+	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+	<li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
+	<li class="breadcrumb-item active"><a href="#">Edit User</a></li>
+</x-breadcrumbs>
+@endsection
 
-				{{ Form::model($user, [
+@section('content')
+<x-wrapper>
+	@include('include.error-list')
+	<x-slot name="headerLeft">Edit form</x-slot>
+
+	{{ Form::model($user, [
 					'route' => [ 'admin.users.update', $user->id ],
 					'method' => 'PUT',
 					'files' => true ,
@@ -19,10 +21,8 @@
 					'onsubmit' => "submitButton.disabled = true"
 				]) }}
 
-				@include('admin.users.form')
+	@include('admin.users.form')
 
-				{!! Form::close() !!}
-			</div>
-		</div>
-	</div>
+	{!! Form::close() !!}
+</x-wrapper>
 @endsection

@@ -50,7 +50,8 @@ class RoleController extends Controller
             $role->givePermissionTo($p);
         }
 
-        return redirect()->route('admin.roles.index')->with('flash_message', 'Role' . $role->name . ' added!');
+        noty()->flash('Hey!', 'Data has been created successfully');
+        return redirect()->route('admin.roles.index');
     }
 
     public function show($id)
@@ -92,7 +93,8 @@ class RoleController extends Controller
             $role->givePermissionTo($p);
         }
 
-        return redirect()->route('admin.roles.index')->with('flash_message', 'Role' . $role->name . ' updated!');
+        noty()->flash('Hey!', 'Data has been updated successfully');
+        return redirect()->route('admin.roles.index');
     }
 
     public function destroy($id)
@@ -100,6 +102,7 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->route('admin.roles.index')->with('flash_message', 'Role deleted!');
+        noty()->danger('Hey!', 'Data has been deleted successfully');
+        return redirect()->route('admin.roles.index');
     }
 }

@@ -36,7 +36,8 @@ class PermissionController extends Controller
         $permission->name = $name;
         $permission->save();
 
-        return redirect()->route('admin.permissions.index')->with('flash_message', 'Permission' . $permission->name . ' added!');
+        noty()->flash('Hey!', 'Data has been created successfully');
+        return redirect()->route('admin.permissions.index');
     }
 
     public function show($id)
@@ -63,7 +64,8 @@ class PermissionController extends Controller
         $input = $request->all();
         $permission->fill($input)->save();
 
-        return redirect()->route('admin.permissions.index')->with('flash_message', 'Permission' . $permission->name . ' updated!');
+        noty()->flash('Hey!', 'Data has been updated successfully');
+        return redirect()->route('admin.permissions.index');
     }
 
     public function destroy($id)
@@ -76,6 +78,7 @@ class PermissionController extends Controller
 
         $permission->delete();
 
-        return redirect()->route('admin.permissions.index')->with('flash_message', 'Permission deleted!');
+        noty()->danger('Hey!', 'Data has been deleted successfully');
+        return redirect()->route('admin.permissions.index');
     }
 }

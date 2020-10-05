@@ -21,7 +21,9 @@
 				<div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
 					<a href="#" class="dropdown-item"><span>Signed in as <br /><b>{{ ucfirst(auth()->user()->name) }}</b></span></a>
 					<div class="dropdown-divider"></div>
-					<a href="#" class="dropdown-item">Your Profile</a>
+					@if(auth()->user()->isImpersonating() || session()->has('impersonate'))
+					<a href="{{ route('impersonate.stop') }}" class="dropdown-item">Stop Impersonate</a>
+					@endif
 					<a href="#" class="dropdown-item">Your Activity</a>
 					<a href="#" class="dropdown-item">Your Archive</a>
 					<div class="dropdown-divider"></div>

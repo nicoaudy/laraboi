@@ -45,9 +45,9 @@ class PermissionDataTable extends DataTable
             ->minifiedAjax()
             ->dom('Bfrtip')
             ->buttons([
-                ['extend' => 'print', 'className' => 'btn xs default mb-2', 'text' => '<i class="fa fa-print"></i>'],
-                ['extend' => 'excel', 'className' => 'btn xs default mb-2', 'text' => '<i class="fa fa-file-excel"></i>'],
-                ['extend' => 'reload', 'className' => 'btn xs default mb-2', 'text' => '<i class="fa fa-sync"></i>'],
+                ['extend' => 'print', 'className' => 'btn xs default m-2', 'text' => '<i class="fa fa-print"></i>'],
+                ['extend' => 'excel', 'className' => 'btn xs default m-2', 'text' => '<i class="fa fa-file-excel"></i>'],
+                ['extend' => 'reload', 'className' => 'btn xs default m-2', 'text' => '<i class="fa fa-sync"></i>'],
             ]);
     }
 

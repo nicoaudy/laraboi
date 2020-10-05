@@ -19,7 +19,7 @@ class ImpersonateController extends Controller
         if ($user->role <> 'Super User') {
             auth()->user()->setImpersonating($user->id);
         } else {
-            flash('Impersonate disabled for this role')->error();
+            noty()->danger('Whops!', 'Impersonate disabled for this role');
         }
         return redirect()->route('home');
     }
@@ -27,7 +27,8 @@ class ImpersonateController extends Controller
     public function stopImpersonating()
     {
         auth()->user()->stopImpersonating();
-        flash('Welcome Back')->success();
+
+        noty()->flash('Hey!', 'Welcome Back');
         return redirect()->route('home');
     }
 }
