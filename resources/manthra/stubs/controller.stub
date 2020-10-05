@@ -8,11 +8,6 @@ use DummyRootNamespaceHttp\Controllers\Controller;
 
 class DummyClass extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
     public function index(Request $request)
     {
         $keyword = $request->get('search');
@@ -23,23 +18,11 @@ class DummyClass extends Controller
         return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
     public function create()
     {
         return view('{{viewPath}}{{viewName}}.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function store(Request $request)
     {
         {{validationRules}}
@@ -47,44 +30,22 @@ class DummyClass extends Controller
         {{fileSnippet}}
         {{modelName}}::create($requestData);
 
-	noty()->success('✅', 'Your data has been added successfully');
+	    noty()->success('✅', 'Data has been added successfully');
         return redirect('{{routeGroup}}{{viewName}}');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
     public function show($id)
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
         return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
     public function edit($id)
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
         return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function update($id, Request $request)
     {
         {{validationRules}}
@@ -93,22 +54,15 @@ class DummyClass extends Controller
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
         ${{crudNameSingular}}->update($requestData);
 
-	noty()->success('✅', 'Your data has been updated successfully');
+	    noty()->success('✅', 'Data has been updated successfully');
         return redirect('{{routeGroup}}{{viewName}}');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function destroy($id)
     {
         {{modelName}}::destroy($id);
 
-	noty()->error('✅', 'Your data has been deleted successfully');
+	    noty()->error('✅', 'Data has been deleted successfully');
         return redirect('{{routeGroup}}{{viewName}}');
     }
 }

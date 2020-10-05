@@ -1,14 +1,13 @@
-<div class="nk-footer">
-	<div class="container wide-xl">
-		<div class="nk-footer-wrap g-2">
-			<div class="nk-footer-copyright"> &copy; {{ now()->format('Y') }} {{ env("APP_NAME", 'Laraboi') }}. Craft with ❤️  by <a href="https://github.com/nicoaudy">NicoAudy</a>
-			</div>
-			<div class="nk-footer-links">
-				<ul class="nav nav-sm">
-					<li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
-				</ul>
-			</div>
-		</div>
+<div class="container container-fixed-lg footer">
+	<div class="copyright sm-text-center">
+		<p class="small-text no-margin pull-left sm-pull-reset">
+			©2019-{{ now()->format('Y') }} All Rights Reserved. {{ env("APP_NAME", 'Laraboi') }}
+		</p>
+		<p class="small no-margin pull-right sm-pull-reset">
+			Hand-crafted
+			<span class="hint-text">&amp; made with Love by</span>
+			️ <a href="https://github.com/nicoaudy">NicoAudy</a>
+		</p>
+		<div class="clearfix"></div>
 	</div>
 </div>

@@ -1,36 +1,34 @@
 @extends('laraboi.app')
 
+@section('breadcrumb')
+<x-breadcrumbs>
+	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+	<li class="breadcrumb-item active"><a href="#">Users</a></li>
+</x-breadcrumbs>
+@endsection
+
 @section('content')
-<div class="nk-block-head nk-block-head-lg">
-	<div class="nk-block-between-md g-4">
-		<div class="nk-block-head-content">
-			<h2 class="nk-block-title fw-normal">Users</h2>
-			<div class="nk-block-des">
-				<p>List all users</p>
-			</div>
-		</div>
-		<div class="nk-block-head-content">
-			<ul class="nk-block-tools gx-3">
-				<li>
-					<a href="{{ route('admin.users.create') }}" class="btn btn-white btn-dim btn-outline-primary">
-						<em class="icon ni ni-plus-circle"></em>
-						<span><span class="d-none d-sm-inline-block">Create New</span> User</span>
+<x-wrapper>
+	<x-slot name="headerLeft">Users</x-slot>
+	<x-slot name="headerRight">
+		<ul>
+			<li>
+				<div class="dropdown">
+					<a id="card-settings" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+						<i class="card-icon card-icon-settings"></i>
 					</a>
-				</li>
-			</ul>
-		</div>
+					<div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="card-settings">
+						<a href="{{ route('admin.users.create') }}" class="dropdown-item">Create new</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</x-slot>
+
+	<div class="table-responsive">
+		{!! $dataTable->table(['class' => 'table table-hover']) !!}
 	</div>
-</div>
-<div class="nk-block">
-	<div class="card">
-		@include('flash::message')
-		<div class="table-responsive">
-			<table class="table table-orders">
-				{!! $dataTable->table(['class' => 'table table-bordered table-hover table-stripped']) !!}
-			</table>
-		</div>
-	</div>
-</div>
+</x-wrapper>
 @endsection
 
 @push('javascript')
