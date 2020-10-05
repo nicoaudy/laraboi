@@ -2,11 +2,8 @@
 
 namespace App\DataTables;
 
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Spatie\Permission\Models\Role;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class RoleDataTable extends DataTable
@@ -48,9 +45,9 @@ class RoleDataTable extends DataTable
             ->minifiedAjax()
             ->dom('Bfrtip')
             ->buttons([
-                ['extend' => 'print', 'className' => 'btn xs default mb-2', 'text' => '<i class="fa fa-print"></i>'],
-                ['extend' => 'excel', 'className' => 'btn xs default mb-2', 'text' => '<i class="fa fa-file-excel"></i>'],
-                ['extend' => 'reload', 'className' => 'btn xs default mb-2', 'text' => '<i class="fa fa-sync"></i>'],
+                ['extend' => 'print', 'className' => 'btn xs default m-2', 'text' => '<i class="fa fa-print"></i>'],
+                ['extend' => 'excel', 'className' => 'btn xs default m-2', 'text' => '<i class="fa fa-file-excel"></i>'],
+                ['extend' => 'reload', 'className' => 'btn xs default m-2', 'text' => '<i class="fa fa-sync"></i>'],
             ]);
     }
 
