@@ -63,7 +63,6 @@ fi
 fancy_echo "Would you like to run migration? (Y or N)"
 read x
 if [ "$x" = "y" ]; then
-    `echo create database $db_name | mysql -u root`
     php artisan migrate --seed
     php artisan passport:install
 fi
