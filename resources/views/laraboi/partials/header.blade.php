@@ -1,136 +1,82 @@
-<div class="nk-header nk-header-fixed is-light">
-	<div class="container-lg wide-xl">
-		<div class="nk-header-wrap">
-			<div class="nk-header-brand">
-				<a href="{{ route('home') }}" class="logo-link">
-					<img class="logo-light logo-img" src="{{ asset('images/logo.png') }}" srcset="{{ asset('images/logo.png') }}" alt="logo">
-					<img class="logo-dark logo-img" src="{{ asset('images/logo.png') }}" srcset="{{ asset('images/logo.png') }}" alt="logo-dark">
-				</a>
+<div class="header p-r-0 bg-primary">
+	<div class="header-inner header-md-height">
+		<a href="#" class="btn-link toggle-sidebar d-lg-none text-white sm-p-l-0 btn-icon-link" data-toggle="horizontal-menu">
+			<i class="pg-icon">menu</i>
+		</a>
+		<div class="">
+			<div class="brand inline no-border d-sm-inline-block">
+				<img src="{{ asset('images/logo.png') }}" alt="logo" data-src="{{ asset('images/logo.png') }}" data-src-retina="{{ asset('images/logo.png') }}" width="78" height="30">
 			</div>
-			<div class="nk-header-tools">
-				<ul class="nk-quick-nav">
-					<li class="dropdown notification-dropdown">
-						<a href="#" class="dropdown-toggle nk-quick-nav-icon mr-lg-n1" data-toggle="dropdown">
-							<div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
-						</a>
-						<div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
-							<div class="dropdown-head">
-								<span class="sub-title nk-dropdown-title">Notifications</span>
-								<a href="#">Mark All as Read</a>
-							</div>
-							<div class="dropdown-body">
-								<div class="nk-notification">
-									<div class="nk-notification-item dropdown-inner">
-										<div class="nk-notification-icon">
-											<em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-										</div>
-										<div class="nk-notification-content">
-											<div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-											<div class="nk-notification-time">2 hrs ago</div>
-										</div>
-									</div>
-									<div class="nk-notification-item dropdown-inner">
-										<div class="nk-notification-icon">
-											<em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-										</div>
-										<div class="nk-notification-content">
-											<div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-											<div class="nk-notification-time">2 hrs ago</div>
-										</div>
-									</div>
-									<div class="nk-notification-item dropdown-inner">
-										<div class="nk-notification-icon">
-											<em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-										</div>
-										<div class="nk-notification-content">
-											<div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-											<div class="nk-notification-time">2 hrs ago</div>
-										</div>
-									</div>
-									<div class="nk-notification-item dropdown-inner">
-										<div class="nk-notification-icon">
-											<em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-										</div>
-										<div class="nk-notification-content">
-											<div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-											<div class="nk-notification-time">2 hrs ago</div>
-										</div>
-									</div>
-									<div class="nk-notification-item dropdown-inner">
-										<div class="nk-notification-icon">
-											<em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-										</div>
-										<div class="nk-notification-content">
-											<div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-											<div class="nk-notification-time">2 hrs ago</div>
-										</div>
-									</div>
-									<div class="nk-notification-item dropdown-inner">
-										<div class="nk-notification-icon">
-											<em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-										</div>
-										<div class="nk-notification-content">
-											<div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-											<div class="nk-notification-time">2 hrs ago</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="dropdown-foot center">
-								<a href="#">View All</a>
-							</div>
-						</div>
+		</div>
+		<div class="d-flex align-items-center">
+			<div class="pull-left p-r-10 fs-14 d-lg-inline-block d-none text-white">
+				<span class="semi-bold">{{ ucfirst(auth()->user()->name) }}</span>
+			</div>
+			<div class="dropdown pull-right d-lg-block">
+				<button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="profile dropdown">
+					<span class="thumbnail-wrapper d32 circular inline">
+						<img src="{{ asset('assets/img/profiles/avatar.jpg') }}" alt="" data-src="{{ asset('assets/img/profiles/avatar.jpg') }}" data-src-retina="{{ asset('assets/img/profiles/avatar_small2x.jpg') }}" width="32" height="32">
+					</span>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
+					<a href="#" class="dropdown-item"><span>Signed in as <br /><b>{{ ucfirst(auth()->user()->name) }}</b></span></a>
+					<div class="dropdown-divider"></div>
+					<a href="#" class="dropdown-item">Your Profile</a>
+					<a href="#" class="dropdown-item">Your Activity</a>
+					<a href="#" class="dropdown-item">Your Archive</a>
+					<div class="dropdown-divider"></div>
+					<a href="#" class="dropdown-item">Features</a>
+					<a href="#" class="dropdown-item">Help</a>
+					<a href="#" class="dropdown-item">Settings</a>
+					<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+						Logout
+					</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						@csrf
+					</form>
+					<div class="dropdown-divider"></div>
+					<span class="dropdown-item fs-12 hint-text">Last logged in by you<br />on
+						{{ \Carbon\Carbon::parse(auth()->user()->last_login)->format('D') }} at {{ \Carbon\Carbon::parse(auth()->user()->last_login)->format('g:i A') }}
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="bg-white">
+		<div class="container">
+			<div class="menu-bar header-sm-height" data-pages-init='horizontal-menu' data-hide-extra-li="4">
+				<a href="#" class="btn-link header-icon toggle-sidebar d-lg-none" data-toggle="horizontal-menu">
+					<i class="pg-icon">close</i>
+				</a>
+				<ul>
+					<li class="{{ set_active('home') }}">
+						<a href="{{ route('home') }}">Dashboard</a>
 					</li>
-					<li class="dropdown user-dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<div class="user-toggle">
-								<div class="user-avatar sm">
-									<em class="icon ni ni-user-alt"></em>
-								</div>
-								<div class="user-name dropdown-indicator d-none d-sm-block">{{ ucfirst(auth()->user()->name) }}</div>
-							</div>
-						</a>
-						<div class="dropdown-menu dropdown-menu-md dropdown-menu-right dropdown-menu-s1">
-							<div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
-								<div class="user-card">
-									<div class="user-avatar">
-										<span>AB</span>
-									</div>
-									<div class="user-info">
-										<span class="lead-text">{{ ucfirst(auth()->user()->name) }}</span>
-										<span class="sub-text">{{ auth()->user()->email }}</span>
-									</div>
-									<div class="user-action">
-										<a class="btn btn-icon mr-n2" href="#"><em class="icon ni ni-setting"></em></a>
-									</div>
-								</div>
-							</div>
-							<div class="dropdown-inner">
-								<ul class="link-list">
-									<li><a href="#"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
-									<li><a href="#"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
-									<li><a href="#"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
-								</ul>
-							</div>
-							<div class="dropdown-inner">
-								<ul class="link-list">
-									<li>
-										<a href="{{ route('logout') }}" onclick="
-											event.preventDefault();
-											document.getElementById('logout-form').submit();
-										">
-											<em class="icon ni ni-signout"></em><span>Sign out</span>
-										</a>
-										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-											@csrf
-										</form>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<li class="{{ set_active('admin.*') }}">
+						<a href="javascript:;"><span class="title">Administration</span>
+							<span class=" arrow"></span></a>
+						<ul>
+							<li>
+								<a href="{{ route('admin.roles.index') }}">Roles</a>
+							</li>
+							<li>
+								<a href="{{ route('admin.permissions.index') }}">Permissions</a>
+							</li>
+							<li>
+								<a href="{{ route('admin.users.index') }}">Users</a>
+							</li>
+						</ul>
 					</li>
-					<li class="d-lg-none">
-						<a href="#" class="toggle nk-quick-nav-icon mr-n1" data-target="sideNav"><em class="icon ni ni-menu"></em></a>
+					<li class="{{ set_active('impersonate.index') }}">
+						<a href="{{ route('impersonate.index') }}">
+							<span class="title">Impersonate</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manthra">
+							<span class="title">Manthra</span>
+						</a>
 					</li>
 				</ul>
 			</div>
