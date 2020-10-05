@@ -10,7 +10,7 @@
 		</div>
 		<div class="d-flex align-items-center">
 			<div class="pull-left p-r-10 fs-14 d-lg-inline-block d-none text-white">
-				<span class="semi-bold">{{ ucfirst(auth()->user()->name) }}</span>
+				<span class="semi-bold">{{ ucfirst(auth()->user()->name) ?? null }}</span>
 			</div>
 			<div class="dropdown pull-right d-lg-block">
 				<button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="profile dropdown">
