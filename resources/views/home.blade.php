@@ -81,66 +81,49 @@
 	</div>
 </div>
 
-<div class="card-body">
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="card card-transparent">
-				<div class="card-body no-padding">
-					<div id="card-advance" class="card card-default">
-						<div class="card-header  ">
-							<div class="card-title">User Activity</div>
-							<div class="card-controls">
-								<ul>
-									<li>
-										<div class="dropdown">
-											<a id="card-settings" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-												<i class="card-icon card-icon-settings "></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="card-settings">
-												<a href="{{ route('admin.users.index') }}" class="dropdown-item">See All</a>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="card-body">
-							<div class="card card-transparent">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-hover table-condensed" id="condensedTable">
-											<thead>
-												<tr>
-													<th>Email</th>
-													<th>Created At</th>
-													<th>Last Logged In</th>
-													<th>Status</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach($users as $log)
-												<tr>
-													<td>
-														<a href="{{ route('admin.users.show', $log->id) }}">{{ $log->email }}</a>
-
-													</td>
-													<td>{{ $log->created_at }}</td>
-													<td>{{ \Carbon\Carbon::parse($log->last_login)->diffForHumans() }}</td>
-													<td>
-														<span class="badge badge-dot badge-{{ $log->active ? 'success' : 'warning' }}">{{ $log->active ? 'Active' : 'Inactive' }}</span>
-													</td>
-												</tr>
-												@endforeach
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
+<x-wrapper>
+	<x-slot name="headerLeft">User Activity</x-slot>
+	<x-slot name="headerRight">
+		<ul>
+			<li>
+				<div class="dropdown">
+					<a id="card-settings" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+						<i class="card-icon card-icon-settings "></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="card-settings">
+						<a href="{{ route('admin.users.index') }}" class="dropdown-item">See All</a>
 					</div>
 				</div>
-			</div>
-		</div>
+			</li>
+		</ul>
+	</x-slot>
+
+	<div class="table-responsive">
+		<table class="table table-hover table-condensed" id="condensedTable">
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Created At</th>
+					<th>Last Logged In</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($users as $log)
+				<tr>
+					<td>
+						<a href="{{ route('admin.users.show', $log->id) }}">{{ $log->email }}</a>
+
+					</td>
+					<td>{{ $log->created_at }}</td>
+					<td>{{ \Carbon\Carbon::parse($log->last_login)->diffForHumans() }}</td>
+					<td>
+						<span class="badge badge-dot badge-{{ $log->active ? 'success' : 'warning' }}">{{ $log->active ? 'Active' : 'Inactive' }}</span>
+					</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 	</div>
-</div>
+</x-wrapper>
 @endsection
