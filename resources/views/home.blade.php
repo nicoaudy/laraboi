@@ -1,5 +1,11 @@
 @extends('laraboi.app')
 
+@section('breadcrumb')
+<x-breadcrumbs>
+	<li class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard Page</a></li>
+</x-breadcrumbs>
+@endsection
+
 @section('content')
 <div class="card card-transparent">
 	<div class="card-header  ">
@@ -78,7 +84,6 @@
 <div class="card-body">
 	<div class="row">
 		<div class="col-lg-12">
-
 			<div class="card card-transparent">
 				<div class="card-body no-padding">
 					<div id="card-advance" class="card card-default">
