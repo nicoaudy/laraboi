@@ -1,8 +1,12 @@
 %%formFieldsHtml%%
 
-<div class="form-group ">
-    {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Create', [
-        'class' => 'btn btn-primary',
-        'name' => 'submitButton'
-    ]) !!}
+<div class="row">
+    <div class="col-md-6">
+        <div></div>
+        <div class="pull-right">
+            {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Create', [
+                'class' => 'btn btn-primary',
+                'name' => 'submitButton'
+            ]) !!}
+        </div>
 </div>

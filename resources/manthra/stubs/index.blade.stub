@@ -9,22 +9,21 @@
 
 @section('content')
 <x-wrapper>
-	<x-slot name="headerLeft">%%crudNameCap%%s Lists</x-slot>
-	<x-slot name="headerRight">
-		<ul>
-			<li>
-				<div class="dropdown">
-					<a id="card-settings" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-						<i class="card-icon card-icon-settings"></i>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="card-settings">
-						<a href="{{ url('/%%routeGroup%%%%viewName%%/create') }}" class="dropdown-item">Create new</a>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</x-slot>
-
+    <x-slot name="headerLeft">%%crudNameCap%%s Lists</x-slot>
+    <x-slot name="headerRight">
+	<ul>
+	    <li>
+		<div class="dropdown">
+		    <a id="card-settings" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+		        <i class="card-icon card-icon-settings"></i>
+		    </a>
+		    <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="card-settings">
+		        <a href="{{ url('/%%routeGroup%%%%viewName%%/create') }}" class="dropdown-item">Create new</a>
+		    </div>
+	        </div>
+	    </li>
+	</ul>
+    </x-slot>
 
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
@@ -39,8 +38,8 @@
                         <td>{{ $loop->index + 1 }}</td>
                         %%formBodyHtml%%
                         <td>
-                            <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%%) }}" title="View %%modelName%%"><button class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                            <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%% . '/edit') }}" title="Edit %%modelName%%"><button class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                            <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%%) }}" title="View %%modelName%%" class="btn btn-info">View</a>
+                            <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%% . '/edit') }}" title="Edit %%modelName%%" class="btn btn-success">Edit</a>
                             {!! Form::open([
                                 'method'=>'DELETE',
                                 'url' => ['/%%routeGroup%%%%viewName%%', $item->%%primaryKey%%],
