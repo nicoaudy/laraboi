@@ -14,34 +14,44 @@ fancy_echo () {
 fancy_echo "Hello $USER, Welcome to Laraboi 🤙"
 fancy_echo "Let's set em up! 🔥🚀"
 
-echo "What is the name your APP?: \c "
+echo "What is the app name?"
     read app_name
 
 fancy_echo "Setting up database 🤙"
 
-echo "What is the database connection you will be using?: Leave it if you using MySql \c "
+echo "What is the database connection you will be using? (default: MySql)"
     read db_connection
 
-echo "What is the database host you will be using?: Leave it if you using 127.0.0.1 \c "
+echo "What is the database host you will be using? (default 127.0.0.1)"
     read db_host
 
-echo "What is the database port you will be using?: Leave it if you using 3306 \c "
+echo "What is the database port you will be using? (default 3306)"
     read db_port
 
-echo "What is the name of the database you will be using?: \c "
+echo "What is the name of the database you will be using?"
     read  db_name
 
-echo "What database user will you be using?: \c "
+if [ $db_connection = 'sqlite' ]; then
+    fancy_echo "Do you want to create sqlite file in database/ folder? (Y or N)"
+        read create_sqlite
+
+    if [ "$create_sqlite" = "Y" ]; then
+        `touch database/$db_name`
+        fancy_echo "Database created"
+    fi
+fi
+
+echo "What database user will you be using?:"
     read db_user
 
-echo "What is the password for this user? Leave an empty string if blank: \c "
+echo "What is the password for this user? Leave an empty string if blank:"
     read db_pass
 
 
 fancy_echo "Setting up env 🔥"
 
 cp .env.example .env
-composer update
+composer install
 php artisan key:generate
 
 php artisan env:set APP_NAME $app_name
@@ -62,7 +72,7 @@ fi
 
 fancy_echo "Would you like to run migration? (Y or N)"
 read x
-if [ "$x" = "y" ]; then
+if [ "$x" = "Y" ]; then
     php artisan migrate --seed
     php artisan passport:install
 fi
@@ -72,7 +82,7 @@ fi
 # -----------------------------------------------------------------------------
 fancy_echo "Would you like to setting up frontend🔥? (Y or N)"
 read x
-if [ "$x" = "y" ]; then
+if [ "$x" = "Y" ]; then
     npm install
     npm run dev
 fi
