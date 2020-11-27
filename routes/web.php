@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ImpersonateController;
+use App\Http\Controllers\Admin\PermissionController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -7,16 +14,37 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth', 'impersonate'])->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('impersonate', 'ImpersonateController@index')->name('impersonate.index');
-    Route::get('/users/{id}/impersonate', 'ImpersonateController@impersonate')->name('impersonate.impersonate');
-    Route::get('/users/stop', 'ImpersonateController@stopImpersonating')->name('impersonate.stop');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('impersonate', [ImpersonateController::class, 'index'])->name('impersonate.index');
+    Route::get('/users/{id}/impersonate', [ImpersonateController::class, 'impersonate'])->name('impersonate.impersonate');
+    Route::get('/users/stop', [ImpersonateController::class, 'stopImpersonating'])->name('impersonate.stop');
 
-    Route::resource('profile', 'ProfileController')->only(['index', 'store']);
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('profile', [ProfileController::class, 'store'])->name('profile.store');
 
-    Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
-        Route::resource('users', 'UserController');
-        Route::resource('roles', 'RoleController');
-        Route::resource('permissions', 'PermissionController');
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('users', [UserController::class, 'store'])->name('users.store');
+        Route::get('users/{id}', [UserController::class, 'show'])->name('users.show');
+        Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+        Route::get('roles', [UserController::class, 'index'])->name('roles.index');
+        Route::get('roles/create', [UserController::class, 'create'])->name('roles.create');
+        Route::post('roles', [UserController::class, 'store'])->name('roles.store');
+        Route::get('roles/{id}', [UserController::class, 'show'])->name('roles.show');
+        Route::get('roles/{id}/edit', [UserController::class, 'edit'])->name('roles.edit');
+        Route::put('roles/{id}', [UserController::class, 'update'])->name('roles.update');
+        Route::delete('roles/{id}', [UserController::class, 'destroy'])->name('roles.destroy');
+
+        Route::get('permissions', [UserController::class, 'index'])->name('permissions.index');
+        Route::get('permissions/create', [UserController::class, 'create'])->name('permissions.create');
+        Route::post('permissions', [UserController::class, 'store'])->name('permissions.store');
+        Route::get('permissions/{id}', [UserController::class, 'show'])->name('permissions.show');
+        Route::get('permissions/{id}/edit', [UserController::class, 'edit'])->name('permissions.edit');
+        Route::put('permissions/{id}', [UserController::class, 'update'])->name('permissions.update');
+        Route::delete('permissions/{id}', [UserController::class, 'destroy'])->name('permissions.destroy');
     });
 });
