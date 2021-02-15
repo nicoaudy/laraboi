@@ -1,52 +1,87 @@
-version: '3.7'
-
+# For more information: https://laravel.com/docs/sail
+version: '3'
 services:
-  nginx:
-    container_name: webserver-laraboi
-    build:
-      context: ./docker
-      dockerfile: Webserver.Dockerfile
-    volumes:
-      - ./:/var/www
-    image: app_webserver:1.0
-    ports:
-      - "9000:80"
-    networks:
-      - app-network
-
-  app:
-    container_name: app-laraboi
-    build:
-      context: ./docker
-      dockerfile: App.Dockerfile
-    image: app:1.0
-    volumes:
-      - ./:/var/www
-    networks:
-      - app-network
-
-  database:
-    image: mysql:5.7
-    container_name: database-laraboi
-    ports:
-      - "4306:3306"
-    environment:
-      MYSQL_DATABASE: homestead
-      MYSQL_USER: homestead
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
-      SERVICE_TAGS: dev
-      SEVICE_NAME: database
-    volumes:
-      - dbdata:/var/lib/mysql
-    networks:
-      - app-network
-
-# Docker network
+    laravel.test:
+        build:
+            context: ./vendor/laravel/sail/runtimes/8.0
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: sail-8.0/app
+        ports:
+            - '${APP_PORT:-80}:80'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        depends_on:
+            - mysql
+           # - pgsql
+            - redis
+    mysql:
+        image: 'mysql:8.0'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-password}'
+            MYSQL_DATABASE: '${DB_DATABASE:-app}'
+            MYSQL_USER: '${DB_USERNAME:-user}'
+            MYSQL_PASSWORD: '${DB_PASSWORD:-password}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        volumes:
+            - 'sailmysql:/var/lib/mysql'
+        networks:
+            - sail
+        healthcheck:
+          test: ["CMD", "mysqladmin", "ping"]
+    # pgsql:
+    #    image: postgres:13
+    #    ports:
+    #        - '${FORWARD_DB_PORT:-5432}:5432'
+    #    environment:
+    #        PGPASSWORD: '${DB_PASSWORD:-secret}'
+    #        POSTGRES_DB: '${DB_DATABASE}'
+    #        POSTGRES_USER: '${DB_USERNAME}'
+    #        POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+    #    volumes:
+    #        - 'sailpostgresql:/var/lib/postgresql/data'
+    #    networks:
+    #        - sail
+    #    healthcheck:
+    #      test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
+    redis:
+        image: 'redis:alpine'
+        ports:
+            - '${FORWARD_REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'sailredis:/data'
+        networks:
+            - sail
+        healthcheck:
+          test: ["CMD", "redis-cli", "ping"]
+    # memcached:
+    #     image: 'memcached:alpine'
+    #     ports:
+    #         - '11211:11211'
+    #     networks:
+    #         - sail
+    mailhog:
+        image: 'mailhog/mailhog:latest'
+        ports:
+            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+        networks:
+            - sail
 networks:
-  app-network:
-    driver: bridge
-
+    sail:
+        driver: bridge
 volumes:
-  dbdata:
-    driver: local
+    sailmysql:
+      driver: local
+    # sailpostgresql:
+    # driver: local
+    sailredis:
+      driver: local
