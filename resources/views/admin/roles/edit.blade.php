@@ -1,26 +1,28 @@
 @extends('laraboi.app')
 
-@section('breadcrumb')
-<x-breadcrumbs>
-	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('admin.roles.index') }}">Roles</a></li>
-	<li class="breadcrumb-item active"><a href="#">Edit Role</a></li>
-</x-breadcrumbs>
+@section('before-content')
+<x-page-title title="Roles">
+	<ol class="breadcrumb float-right">
+		<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+		<li class="breadcrumb-item"><a href="{{ route('admin.roles.index') }}">Roles</a></li>
+		<li class="breadcrumb-item active">Edit Role</li>
+	</ol>
+</x-page-title>
 @endsection
 
 @section('content')
 <x-wrapper>
 	@include('include.error-list')
-	<x-slot name="headerLeft">Edit form</x-slot>
+	<x-slot name="header">Edit Form</x-slot>
 
 	{{ Form::model($role, [
-					'route' => [ 'admin.roles.update', $role->id ],
-					'method' => 'PUT',
-					'files' => true ,
-					'class' => 'form-horizontal',
-					'onsubmit' => "submitButton.disabled = true",
-					'role' => 'form'
-				]) }}
+		'route' => [ 'admin.roles.update', $role->id ],
+		'method' => 'PUT',
+		'files' => true ,
+		'class' => 'form-horizontal',
+		'onsubmit' => "submitButton.disabled = true",
+		'role' => 'form'
+	]) }}
 
 	@include('admin.roles.form')
 

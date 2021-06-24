@@ -1,17 +1,19 @@
 @extends('laraboi.app')
 
-@section('breadcrumb')
-<x-breadcrumbs>
-	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('admin.permissions.index') }}">Permissions</a></li>
-	<li class="breadcrumb-item active"><a href="#">Create Permission</a></li>
-</x-breadcrumbs>
+@section('before-content')
+<x-page-title title="Permissions">
+	<ol class="breadcrumb float-right">
+		<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+		<li class="breadcrumb-item"><a href="{{ route('admin.permissions.index') }}">Permissions</a></li>
+		<li class="breadcrumb-item active">Create Permission</li>
+	</ol>
+</x-page-title>
 @endsection
 
 @section('content')
 <x-wrapper>
 	@include('include.error-list')
-	<x-slot name="headerLeft">Create form</x-slot>
+	<x-slot name="header">Create Form</x-slot>
 
 	{!! Form::open([
 	'route' => 'admin.permissions.store',

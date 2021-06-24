@@ -1,34 +1,30 @@
 @extends('laraboi.app')
 
-@section('breadcrumb')
-<x-breadcrumbs>
-	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-	<li class="breadcrumb-item active"><a href="#">Permissions</a></li>
-</x-breadcrumbs>
+@section('before-content')
+<x-page-title title="Permissions">
+	<ol class="breadcrumb float-right">
+		<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+		<li class="breadcrumb-item active">Permissions</li>
+	</ol>
+</x-page-title>
 @endsection
 
 @section('content')
-<x-wrapper>
-	<x-slot name="headerLeft">Permissions</x-slot>
-	<x-slot name="headerRight">
-		<ul>
-			<li>
-				<div class="dropdown">
-					<a id="card-settings" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-						<i class="card-icon card-icon-settings"></i>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="card-settings">
-						<a href="{{ route('admin.permissions.create') }}" class="dropdown-item">Create new</a>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</x-slot>
+<div class="row">
+	<div class="col-12">
+		<div class="card m-b-30">
+			<div class="card-body">
+				<div class="mb-4 header-title pull-right text-right">
+					<a href="{{ route('admin.permissions.create') }}" class="btn btn-primary">New Permission</a>
+			    </div>
 
-	<div class="table-responsive">
-		{!! $dataTable->table(['class' => 'table table-bordered table-hover table-stripped']) !!}
+				<div class="table-responsive">
+					{!! $dataTable->table(['class' => 'table table-hover']) !!}
+				</div>
+			</div>
+		</div>
 	</div>
-</x-wrapper>
+</div>
 @endsection
 
 @push('javascript')

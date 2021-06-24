@@ -1,17 +1,19 @@
 @extends('laraboi.app')
 
-@section('breadcrumb')
-<x-breadcrumbs>
-	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('admin.roles.index') }}">Roles</a></li>
-	<li class="breadcrumb-item active"><a href="#">Create Role</a></li>
-</x-breadcrumbs>
+@section('before-content')
+<x-page-title title="Roles">
+	<ol class="breadcrumb float-right">
+		<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+		<li class="breadcrumb-item"><a href="{{ route('admin.roles.index') }}">Roles</a></li>
+		<li class="breadcrumb-item active">Create Role</li>
+	</ol>
+</x-page-title>
 @endsection
 
 @section('content')
 <x-wrapper>
 	@include('include.error-list')
-	<x-slot name="headerLeft">Create form</x-slot>
+	<x-slot name="header">Create Form</x-slot>
 
 	{!! Form::open([
 	'route' => 'admin.roles.store',
