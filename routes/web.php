@@ -7,9 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\Admin\PermissionController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'auth.login');
 
 Auth::routes();
 
