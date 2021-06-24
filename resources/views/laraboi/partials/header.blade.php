@@ -1,88 +1,103 @@
-<div class="header p-r-0 bg-primary">
-	<div class="header-inner header-md-height">
-		<a href="#" class="btn-link toggle-sidebar d-lg-none text-white sm-p-l-0 btn-icon-link" data-toggle="horizontal-menu">
-			<i class="pg-icon">menu</i>
+<div class="topbar">
+	<div class="topbar-left">
+		<a href="index.html" class="logo">
+			<span class="logo-light">
+				<i class="mdi mdi-camera-control"></i> Stexo
+			</span>
+			<span class="logo-sm">
+				<i class="mdi mdi-camera-control"></i>
+			</span>
 		</a>
-		<div class="">
-			<div class="brand inline no-border d-sm-inline-block">
-				<img src="{{ asset('images/logo.png') }}" alt="logo" data-src="{{ asset('images/logo.png') }}" data-src-retina="{{ asset('images/logo.png') }}" width="78" height="30">
-				<span style="color: white; font-weight: bold; font-size: 1rem;"> araboi</span>
-			</div>
-		</div>
-		<div class="d-flex align-items-center">
-			<div class="pull-left p-r-10 fs-14 d-lg-inline-block d-none text-white">
-				<span class="semi-bold">{{ ucfirst(auth()->user()->name) ?? null }}</span>
-			</div>
-			<div class="dropdown pull-right d-lg-block">
-				<button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="profile dropdown">
-					<span class="thumbnail-wrapper d32 circular inline">
-						<img src="{{ asset('images/default.jpg') }}" alt="" data-src="{{ asset('images/default.jpg') }}" data-src-retina="{{ asset('images/default.jpg') }}" width="32" height="32">
-					</span>
-				</button>
-				<div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
-					<a href="#" class="dropdown-item"><span>Signed in as <br /><b>{{ ucfirst(auth()->user()->name) }}</b></span></a>
-					<div class="dropdown-divider"></div>
-					@if(auth()->user()->isImpersonating() || session()->has('impersonate'))
-					<a href="{{ route('impersonate.stop') }}" class="dropdown-item">Stop Impersonate</a>
-					@endif
-					<a href="#" class="dropdown-item">Your Activity</a>
-					<a href="#" class="dropdown-item">Your Archive</a>
-					<div class="dropdown-divider"></div>
-					<a href="#" class="dropdown-item">Features</a>
-					<a href="#" class="dropdown-item">Help</a>
-					<a href="#" class="dropdown-item">Settings</a>
-					<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-						Logout
-					</a>
-					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-						@csrf
-					</form>
-					<div class="dropdown-divider"></div>
-					<span class="dropdown-item fs-12 hint-text">Last logged in by you<br />on
-						{{ \Carbon\Carbon::parse(auth()->user()->last_login)->format('D') }} at {{ \Carbon\Carbon::parse(auth()->user()->last_login)->format('g:i A') }}
-					</span>
-				</div>
-			</div>
-		</div>
 	</div>
-
-	<div class="bg-white">
-		<div class="container">
-			<div class="menu-bar header-sm-height" data-pages-init='horizontal-menu' data-hide-extra-li="4">
-				<a href="#" class="btn-link header-icon toggle-sidebar d-lg-none" data-toggle="horizontal-menu">
-					<i class="pg-icon">close</i>
+	<nav class="navbar-custom">
+		<ul class="navbar-right list-inline float-right mb-0">
+			<li class="dropdown notification-list list-inline-item">
+				<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+					<i class="mdi mdi-bell-outline noti-icon"></i>
+					<span class="badge badge-pill badge-danger noti-icon-badge">3</span>
 				</a>
-				<ul>
-					<li class="{{ set_active('home') }}">
-						<a href="{{ route('home') }}">Dashboard</a>
-					</li>
-					<li class="{{ set_active('admin.*') }}">
-						<a href="javascript:;"><span class="title">Administration</span>
-							<span class=" arrow"></span></a>
-						<ul>
-							<li>
-								<a href="{{ route('admin.roles.index') }}">Roles</a>
-							</li>
-							<li>
-								<a href="{{ route('admin.permissions.index') }}">Permissions</a>
-							</li>
-							<li>
-								<a href="{{ route('admin.users.index') }}">Users</a>
-							</li>
-						</ul>
-					</li>
-					<li class="{{ set_active('impersonate.index') }}">
-						<a href="{{ route('impersonate.index') }}">
-							<span class="title">Impersonate</span>
+				<div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-lg px-1">
+					<!-- item-->
+					<h6 class="dropdown-item-text">
+						Notifications
+					</h6>
+					<div class="slimscroll notification-item-list">
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item active">
+							<div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
+							<p class="notify-details"><b>Your order is placed</b><span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
 						</a>
-					</li>
-					<li>
-						<a href="/manthra">
-							<span class="title">Manthra</span>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<div class="notify-icon bg-danger"><i class="mdi mdi-message-text-outline"></i></div>
+							<p class="notify-details"><b>New Message received</b><span class="text-muted">You have 87 unread messages</span></p>
 						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<div class="notify-icon bg-info"><i class="mdi mdi-filter-outline"></i></div>
+							<p class="notify-details"><b>Your item is shipped</b><span class="text-muted">It is a long established fact that a reader will</span></p>
+						</a>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<div class="notify-icon bg-success"><i class="mdi mdi-message-text-outline"></i></div>
+							<p class="notify-details"><b>New Message received</b><span class="text-muted">You have 87 unread messages</span></p>
+						</a>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<div class="notify-icon bg-warning"><i class="mdi mdi-cart-outline"></i></div>
+							<p class="notify-details"><b>Your order is placed</b><span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
+						</a>
+
+					</div>
+					<!-- All-->
+					<a href="javascript:void(0);" class="dropdown-item text-center notify-all text-primary">
+						View all <i class="fi-arrow-right"></i>
+					</a>
+				</div>
+			</li>
+
+			<li class="dropdown notification-list list-inline-item">
+				<div class="dropdown notification-list nav-pro-img">
+					<a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+						<img src="{{ asset('assets/images/users/user-4.jpg') }}" alt="user" class="rounded-circle">
+					</a>
+					<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+						@if(auth()->user()->isImpersonating() || session()->has('impersonate'))
+						<a href="{{ route('impersonate.stop') }}" class="mdi mdi-pause">Stop Impersonate</a>
+						@endif
+						<a class="dropdown-item" href="#"><i class="mdi mdi-account-circle"></i> Profile</a>
+						<a class="dropdown-item" href="#"><i class="mdi mdi-wallet"></i> My Wallet</a>
+						<a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings"></i> Settings</a>
+						<a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i> Lock screen</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="mdi mdi-power text-danger"></i> Logout</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
+					</div>
+				</div>
+			</li>
+
+		</ul>
+
+		<ul class="list-inline menu-left mb-0">
+			<li class="float-left">
+				<button class="button-menu-mobile open-left waves-effect">
+					<i class="mdi mdi-menu"></i>
+				</button>
+			</li>
+			<li class="d-none d-md-inline-block">
+				<form role="search" class="app-search">
+					<div class="form-group mb-0">
+						<input type="text" class="form-control" placeholder="Search..">
+						<button type="submit"><i class="fa fa-search"></i></button>
+					</div>
+				</form>
+			</li>
+		</ul>
+	</nav>
 </div>

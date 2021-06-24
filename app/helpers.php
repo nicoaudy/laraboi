@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
-function set_active($uri, $output = 'active')
+function set_active($uri, $output = 'mm-active active')
 {
     if (is_array($uri)) {
         foreach ($uri as $u) {
