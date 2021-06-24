@@ -1,20 +1,29 @@
 @extends('laraboi.app')
 
-@section('breadcrumb')
-<x-breadcrumbs>
-	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-	<li class="breadcrumb-item active"><a href="#">Impersonate</a></li>
-</x-breadcrumbs>
+@section('before-content')
+<x-page-title title="Impersonate">
+	<ol class="breadcrumb float-right">
+		<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+		<li class="breadcrumb-item active">Impersonate</li>
+	</ol>
+</x-page-title>
 @endsection
 
 @section('content')
-<x-wrapper>
-	<x-slot name="headerLeft">Impersonate</x-slot>
+<div class="row">
+	<div class="col-12">
+		<div class="card m-b-30">
+			<div class="card-body">
+				<div class="mb-4 header-title pull-right text-right">
+			    </div>
 
-	<div class="table-responsive">
-		{!! $dataTable->table(['class' => 'table table-hover']) !!}
+				<div class="table-responsive">
+					{!! $dataTable->table(['class' => 'table table-hover']) !!}
+				</div>
+			</div>
+		</div>
 	</div>
-</x-wrapper>
+</div>
 @endsection
 
 @push('javascript')

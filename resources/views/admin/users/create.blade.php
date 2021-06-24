@@ -1,17 +1,19 @@
 @extends('laraboi.app')
 
-@section('breadcrumb')
-<x-breadcrumbs>
-	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-	<li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
-	<li class="breadcrumb-item active"><a href="#">Create User</a></li>
-</x-breadcrumbs>
+@section('before-content')
+<x-page-title title="Users">
+	<ol class="breadcrumb float-right">
+		<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+		<li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
+		<li class="breadcrumb-item active">Create User</li>
+	</ol>
+</x-page-title>
 @endsection
 
 @section('content')
 <x-wrapper>
 	@include('include.error-list')
-	<x-slot name="headerLeft">Create form</x-slot>
+	<x-slot name="header">Create form</x-slot>
 
 	{!! Form::open([
 	'route' => 'admin.users.store',
