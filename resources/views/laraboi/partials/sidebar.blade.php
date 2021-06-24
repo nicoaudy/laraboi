@@ -9,11 +9,13 @@
 					</a>
 				</li>
 
+				@can('impersonate')
 				<li>
 					<a href="{{ route('impersonate.index') }}" class="waves-effect {{ set_active('impersonate.index') }}">
 						<i class="icon-mail-open"></i><span> Impersonate
 					</a>
 				</li>
+				@endif
 
 				<li class="menu-title">Administration</li>
 				<li>
@@ -28,21 +30,29 @@
 					</ul>
 				</li>
 
+				@can('view user')
 				<li>
 					<a href="{{ route('admin.users.index') }}" class="waves-effect {{ set_active('admin.users.index') }}">
 						<i class="icon-profile"></i><span> Users
 					</a>
 				</li>
+				@endcan
+
+				@can('view role')
 				<li>
 					<a href="{{ route('admin.roles.index') }}" class="waves-effect {{ set_active('admin.roles.index') }}">
 						<i class="icon-share"></i><span> Roles
 					</a>
 				</li>
+				@endcan
+
+				@can('view permission')
 				<li>
 					<a href="{{ route('admin.permissions.index') }}" class="waves-effect {{ set_active('admin.permissions.index') }}">
 						<i class="icon-tshirt"></i><span> Permissions
 					</a>
 				</li>
+				@endcan
 
 			</ul>
 
