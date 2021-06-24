@@ -2,7 +2,7 @@
 	<div class="topbar-left">
 		<a href="index.html" class="logo">
 			<span class="logo-light">
-				<i class="mdi mdi-camera-control"></i> Stexo
+				<i class="mdi mdi-camera-control"></i> {{ env('APP_NAME') }}
 			</span>
 			<span class="logo-sm">
 				<i class="mdi mdi-camera-control"></i>
@@ -67,7 +67,7 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 						@if(auth()->user()->isImpersonating() || session()->has('impersonate'))
-						<a href="{{ route('impersonate.stop') }}" class="mdi mdi-pause">Stop Impersonate</a>
+						<a class="dropdown-item" href="{{ route('impersonate.stop') }}"><i class="mdi mdi-stop-circle"></i> Stop Impersonate</a>
 						@endif
 						<a class="dropdown-item" href="#"><i class="mdi mdi-account-circle"></i> Profile</a>
 						<a class="dropdown-item" href="#"><i class="mdi mdi-wallet"></i> My Wallet</a>
