@@ -79,7 +79,7 @@
 						</button>
 					</div>
 				</div>
-				<div class="form-group mb-0 row">
+				<div class="form-group mb-0">
 					<div class="col-12 m-t-10 text-center">
 						<a href="{{ route('login') }}" class="text-muted">Already have account?</a>
 					</div>
