@@ -43,7 +43,7 @@
                         <td>
                             <a href="{{ route('%%routeGroup%%%%viewName%%.show', $item->%%primaryKey%%) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                             <a href="{{ route('%%routeGroup%%%%viewName%%.edit', $item->%%primaryKey%%) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
-<a data-href="{{ route('%%routeGroup%%%%viewName%%.destroy', $item->%%primaryKey%%) }}" class="btn btn-danger ml-2" data-toggle="modal" data-target="#confirm-delete-modal"><i class="fa fa-trash"></i></a>
+<a data-href="{{ route('%%routeGroup%%%%viewName%%.destroy', $item->%%primaryKey%%) }}" class="btn btn-danger text-white" data-toggle="modal" data-target="#confirm-delete-modal"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 @empty
