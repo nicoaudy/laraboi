@@ -10,7 +10,6 @@
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
         "imliam/laravel-env-set-command": "^1.0",
-        "laracasts/flash": "^3.0",
         "laravel/framework": "^8.0",
         "laravel/legacy-factories": "^1.1",
         "laravel/passport": "^10.0",
@@ -19,7 +18,6 @@
         "laravelcollective/html": "^6.0",
         "nicoaudy/laravelmanthra": "dev-master",
         "nicoaudy/noty": "^1.0",
-        "spatie/flysystem-dropbox": "^1.2",
         "spatie/laravel-permission": "^3.0",
         "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "^9.0"
