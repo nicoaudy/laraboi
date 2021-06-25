@@ -12,7 +12,7 @@
 
 @section('content')
 <x-wrapper>
-	@include('include.error-list')
+	<x-errors />
 	<x-slot name="header">Create form</x-slot>
 
 	{!! Form::open([

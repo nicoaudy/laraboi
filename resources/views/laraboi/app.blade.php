@@ -55,7 +55,6 @@
 
 		<script src="{{ asset('assets/js/app.js') }}"></script>
 
-
 		{{ noty_assets() }}
 
 		@stack('javascript')

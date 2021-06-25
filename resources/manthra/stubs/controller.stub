@@ -30,7 +30,7 @@ class DummyClass extends Controller
         {{fileSnippet}}
         {{modelName}}::create($requestData);
 
-	    noty()->success('✅', 'Data has been added successfully');
+        noty()->success('✅', 'Data has been added successfully');
         return redirect('{{routeGroup}}{{viewName}}');
     }
 
@@ -54,7 +54,7 @@ class DummyClass extends Controller
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
         ${{crudNameSingular}}->update($requestData);
 
-	    noty()->success('✅', 'Data has been updated successfully');
+	      noty()->success('✅', 'Data has been updated successfully');
         return redirect('{{routeGroup}}{{viewName}}');
     }
 
@@ -62,7 +62,7 @@ class DummyClass extends Controller
     {
         {{modelName}}::destroy($id);
 
-	    noty()->error('✅', 'Data has been deleted successfully');
+	      noty()->error('✅', 'Data has been deleted successfully');
         return redirect('{{routeGroup}}{{viewName}}');
     }
 }
