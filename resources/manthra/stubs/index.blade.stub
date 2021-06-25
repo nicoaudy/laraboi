@@ -1,69 +1,75 @@
 @extends('laraboi.app')
 
-@section('breadcrumb')
-<x-breadcrumbs>
-	<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-	<li class="breadcrumb-item active"><a href="#">%%crudNameCap%%s Lists</a></li>
-</x-breadcrumbs>
+@section('before-content')
+<x-page-title title="%%crudNameCap%%s">
+	<ol class="breadcrumb float-right">
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+			<li class="breadcrumb-item active">%%crudNameCap%%s</li>
+	</ol>
+</x-page-title>
 @endsection
 
 @section('content')
-<x-wrapper>
-    <x-slot name="headerLeft">%%crudNameCap%%s Lists</x-slot>
-    <x-slot name="headerRight">
-	<ul>
-	    <li>
-		<div class="dropdown">
-		    <a id="card-settings" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-		        <i class="card-icon card-icon-settings"></i>
-		    </a>
-		    <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="card-settings">
-		        <a href="{{ url('/%%routeGroup%%%%viewName%%/create') }}" class="dropdown-item">Create new</a>
-		    </div>
-	        </div>
-	    </li>
-	</ul>
-    </x-slot>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card m-b-30">
+			<div class="card-body">
 
-    <div class="table-responsive">
-        <table class="table table-hover table-bordered">
-            <thead class="thead-light">
-                <tr>
-                    <th>#</th>%%formHeadingHtml%%<th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+				<h4 class="mt-0 header-title">%%crudNameCap%%s Lists</h4>
+				<p class="sub-title">Use one of two modifier classes to make appear light or dark gray.</p>
+
+				<div class="d-flex justify-content-between mb-4">
+				    <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2">
+					      <input name="search" class="form-control form-control-sm mr-3" type="text" placeholder="Search" aria-label="Search">
+					      <button type="submit" class="btn btn-success">
+					          <i class="fas fa-search" aria-hidden="true"></i>
+					      </button>
+		        </form>
+					<a href="{{ route('%%routeGroup%%%%viewName%%.create') }}" class="btn btn-primary">New %%modelName%%</a>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table mb-0">
+						<thead class="thead-default">
+							<tr>
+						      <th>#</th>
+						      %%formHeadingHtml%%
+						      <th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
                 @forelse($%%crudName%% as $item)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         %%formBodyHtml%%
                         <td>
-                            <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%%) }}" title="View %%modelName%%" class="btn btn-info">View</a>
-                            <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%% . '/edit') }}" title="Edit %%modelName%%" class="btn btn-success">Edit</a>
+                            <a href="{{ route('%%routeGroup%%%%viewName%%.show', $item->%%primaryKey%%) }}" class="btn btn-info">Detail</a>
+                            <a href="{{ route('%%routeGroup%%%%viewName%%.edit', $item->%%primaryKey%%) }}" class="btn btn-success">Edit</a>
                             {!! Form::open([
                                 'method'=>'DELETE',
-                                'url' => ['/%%routeGroup%%%%viewName%%', $item->%%primaryKey%%],
-                                'style' => 'display:inline'
+                                'route' => ['%%routeGroup%%%%viewName%%.destroy', $item->%%primaryKey%%],
                             ]) !!}
-                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                                {!! Form::button('<i class="fa fa-trash"></i>', [
                                         'type' => 'submit',
                                         'class' => 'btn btn-danger',
-                                        'title' => 'Delete %%modelName%%',
                                         'onclick'=>'return confirm("Confirm delete?")'
-                                )) !!}
+                                ]) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
                 @empty
                     <tr>
                         <td colspan="{{ config('laravelmanthra.view_columns_number') + 2 }}">
-                            Data not found, <a href="{{ url('/%%routeGroup%%%%viewName%%/create') }}"> create new </a>
+                            Data not found, <a href="{{ route('%%routeGroup%%%%viewName%%.create') }}"> create new </a>
                         </td>
                     </tr>
                 @endforelse
-            </tbody>
-        </table>
-        <div class="pagination-wrapper"> {!! $%%crudName%%->appends(['search' => Request::get('search')])->render() !!} </div>
-    </div>
-</x-wrapper>
+						</tbody>
+					</table>
+				  <div class="pagination-wrapper"> {!! $%%crudName%%->appends(['search' => Request::get('search')])->render() !!} </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
