@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-	x-wrapper>
+	<x-wrapper>
 		@include('include.error-list')
         <table class="table table-borderless">
             <tbody>
