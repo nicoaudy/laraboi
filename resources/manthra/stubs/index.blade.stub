@@ -21,9 +21,7 @@
 				<div class="d-flex justify-content-between mb-4">
 				    <form class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2">
 					      <input name="search" class="form-control form-control-sm mr-3" type="text" placeholder="Search" aria-label="Search">
-					      <button type="submit" class="btn btn-success">
-					          <i class="fas fa-search" aria-hidden="true"></i>
-					      </button>
+					      <i class="fas fa-search" aria-hidden="true"></i>
 		        </form>
 					<a href="{{ route('%%routeGroup%%%%viewName%%.create') }}" class="btn btn-primary">New %%modelName%%</a>
 				</div>
@@ -43,18 +41,9 @@
                         <td>{{ $loop->index + 1 }}</td>
                         %%formBodyHtml%%
                         <td>
-                            <a href="{{ route('%%routeGroup%%%%viewName%%.show', $item->%%primaryKey%%) }}" class="btn btn-info">Detail</a>
-                            <a href="{{ route('%%routeGroup%%%%viewName%%.edit', $item->%%primaryKey%%) }}" class="btn btn-success">Edit</a>
-                            {!! Form::open([
-                                'method'=>'DELETE',
-                                'route' => ['%%routeGroup%%%%viewName%%.destroy', $item->%%primaryKey%%],
-                            ]) !!}
-                                {!! Form::button('<i class="fa fa-trash"></i>', [
-                                        'type' => 'submit',
-                                        'class' => 'btn btn-danger',
-                                        'onclick'=>'return confirm("Confirm delete?")'
-                                ]) !!}
-                            {!! Form::close() !!}
+                            <a href="{{ route('%%routeGroup%%%%viewName%%.show', $item->%%primaryKey%%) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('%%routeGroup%%%%viewName%%.edit', $item->%%primaryKey%%) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+<a data-href="{{ route('%%routeGroup%%%%viewName%%.destroy', $item->%%primaryKey%%) }}" class="btn btn-danger ml-2" data-toggle="modal" data-target="#confirm-delete-modal"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 @empty
@@ -73,3 +62,7 @@
 	</div>
 </div>
 @endsection
+
+@push('javascript')
+		@include('shared.delete-modal')
+@endpush
